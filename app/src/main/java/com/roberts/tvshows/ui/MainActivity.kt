@@ -2,6 +2,7 @@ package com.roberts.tvshows.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
@@ -13,6 +14,7 @@ import com.roberts.tvshows.util.Resource
 import com.roberts.tvshows.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+private const val TAG = "MainActivity"
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity() {
                 is Resource.Success ->{
                     binding.progressBar.isVisible = false
                     val shows = result.data
+                    Log.d(TAG, "subscribeToPosts: ${result.data} ")
                     adapter.submitList(shows)
                     binding.tvShowsRV.adapter = adapter
                 }
